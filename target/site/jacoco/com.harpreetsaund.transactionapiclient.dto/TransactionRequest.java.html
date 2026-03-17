@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">transaction-api-client</a> &gt; <a href="index.source.html" class="el_package">com.harpreetsaund.transactionapiclient.dto</a> &gt; <span class="el_source">TransactionRequest.java</span></div><h1>TransactionRequest.java</h1><pre class="source lang-java linenums">package com.harpreetsaund.transactionapiclient.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import jakarta.validation.constraints.*;
+import java.math.BigDecimal;
+import java.time.Instant;
+
+@Schema(name = &quot;TransactionRequest&quot;, description = &quot;Request object for transaction creation or update operations&quot;)
+public class TransactionRequest {
+
+<span class="nc" id="L13">    public TransactionRequest() {</span>
+<span class="nc" id="L14">    }</span>
+
+    /**
+     * Version 1 - Transaction Request Schema with Swagger documentation and
+     * validation constraints
+     */
+    @Schema(name = &quot;TransactionRequestVersion1&quot;, description = &quot;Request object for transaction creation or update operations (Versio 1)&quot;, example = &quot;{\&quot;eventId\&quot;:\&quot;evt-12345\&quot;,\&quot;transactionId\&quot;:\&quot;txn-98765\&quot;,\&quot;accountNumber\&quot;:\&quot;ACC-001\&quot;,\&quot;transactionType\&quot;:\&quot;DEBIT\&quot;,\&quot;amount\&quot;:100.50,\&quot;currency\&quot;:\&quot;USD\&quot;,\&quot;merchantName\&quot;:\&quot;Sample Merchant\&quot;,\&quot;channel\&quot;:\&quot;ATM\&quot;,\&quot;transactionTimestamp\&quot;:\&quot;2026-03-10T10:30:00Z\&quot;,\&quot;sourceSystem\&quot;:\&quot;CORE\&quot;,\&quot;topicName\&quot;:\&quot;transaction-events\&quot;}&quot;)
+<span class="fc" id="L21">    public static class Version1 {</span>
+
+        @Schema(description = &quot;Unique event identifier&quot;, example = &quot;evt-12345&quot;, requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotBlank(message = &quot;Event ID cannot be blank&quot;)
+        @Size(max = 255, message = &quot;Event ID must not exceed 255 characters&quot;)
+        private String eventId;
+
+        @Schema(description = &quot;Unique transaction identifier&quot;, example = &quot;txn-98765&quot;, requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotBlank(message = &quot;Transaction ID cannot be blank&quot;)
+        @Size(max = 255, message = &quot;Transaction ID must not exceed 255 characters&quot;)
+        private String transactionId;
+
+        @Schema(description = &quot;Bank account number&quot;, example = &quot;ACC-001&quot;, requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotBlank(message = &quot;Account number cannot be blank&quot;)
+        @Size(max = 255, message = &quot;Account number must not exceed 255 characters&quot;)
+        private String accountNumber;
+
+        @Schema(description = &quot;Type of transaction (e.g., DEBIT, CREDIT, TRANSFER)&quot;, example = &quot;DEBIT&quot;, requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotBlank(message = &quot;Transaction type cannot be blank&quot;)
+        @Size(max = 50, message = &quot;Transaction type must not exceed 50 characters&quot;)
+        private String transactionType;
+
+        @Schema(description = &quot;Transaction amount&quot;, example = &quot;100.50&quot;, requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotNull(message = &quot;Amount cannot be null&quot;)
+        @DecimalMin(value = &quot;0.01&quot;, message = &quot;Amount must be greater than 0&quot;)
+        @Digits(integer = 16, fraction = 2, message = &quot;Amount must have at most 16 integer digits and 2 decimal places&quot;)
+        private BigDecimal amount;
+
+        @Schema(description = &quot;Currency code (ISO 4217)&quot;, example = &quot;USD&quot;, requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotBlank(message = &quot;Currency cannot be blank&quot;)
+        @Size(min = 3, max = 3, message = &quot;Currency must be exactly 3 characters&quot;)
+        private String currency;
+
+        @Schema(description = &quot;Name of the merchant&quot;, example = &quot;Sample Merchant&quot;, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+        @Size(max = 255, message = &quot;Merchant name must not exceed 255 characters&quot;)
+        private String merchantName;
+
+        @Schema(description = &quot;Transaction channel (e.g., ATM, ONLINE, MOBILE)&quot;, example = &quot;ATM&quot;, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+        @Size(max = 50, message = &quot;Channel must not exceed 50 characters&quot;)
+        private String channel;
+
+        @Schema(description = &quot;Timestamp when the transaction occurred&quot;, example = &quot;2026-03-10T10:30:00Z&quot;, requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotNull(message = &quot;Transaction timestamp cannot be null&quot;)
+        private Instant transactionTimestamp;
+
+        @Schema(description = &quot;Source system from which the transaction originated&quot;, example = &quot;CORE&quot;, requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotBlank(message = &quot;Source system cannot be blank&quot;)
+        @Size(max = 255, message = &quot;Source system must not exceed 255 characters&quot;)
+        private String sourceSystem;
+
+        @Schema(description = &quot;Kafka topic name for the transaction event&quot;, example = &quot;transaction-events&quot;, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+        @Size(max = 255, message = &quot;Topic name must not exceed 255 characters&quot;)
+        private String topicName;
+
+        public String getEventId() {
+<span class="fc" id="L76">            return eventId;</span>
+        }
+
+        public void setEventId(String eventId) {
+<span class="fc" id="L80">            this.eventId = eventId;</span>
+<span class="fc" id="L81">        }</span>
+
+        public String getTransactionId() {
+<span class="fc" id="L84">            return transactionId;</span>
+        }
+
+        public void setTransactionId(String transactionId) {
+<span class="fc" id="L88">            this.transactionId = transactionId;</span>
+<span class="fc" id="L89">        }</span>
+
+        public String getAccountNumber() {
+<span class="fc" id="L92">            return accountNumber;</span>
+        }
+
+        public void setAccountNumber(String accountNumber) {
+<span class="fc" id="L96">            this.accountNumber = accountNumber;</span>
+<span class="fc" id="L97">        }</span>
+
+        public String getTransactionType() {
+<span class="fc" id="L100">            return transactionType;</span>
+        }
+
+        public void setTransactionType(String transactionType) {
+<span class="fc" id="L104">            this.transactionType = transactionType;</span>
+<span class="fc" id="L105">        }</span>
+
+        public BigDecimal getAmount() {
+<span class="fc" id="L108">            return amount;</span>
+        }
+
+        public void setAmount(BigDecimal amount) {
+<span class="fc" id="L112">            this.amount = amount;</span>
+<span class="fc" id="L113">        }</span>
+
+        public String getCurrency() {
+<span class="fc" id="L116">            return currency;</span>
+        }
+
+        public void setCurrency(String currency) {
+<span class="fc" id="L120">            this.currency = currency;</span>
+<span class="fc" id="L121">        }</span>
+
+        public String getMerchantName() {
+<span class="fc" id="L124">            return merchantName;</span>
+        }
+
+        public void setMerchantName(String merchantName) {
+<span class="fc" id="L128">            this.merchantName = merchantName;</span>
+<span class="fc" id="L129">        }</span>
+
+        public String getChannel() {
+<span class="fc" id="L132">            return channel;</span>
+        }
+
+        public void setChannel(String channel) {
+<span class="fc" id="L136">            this.channel = channel;</span>
+<span class="fc" id="L137">        }</span>
+
+        public Instant getTransactionTimestamp() {
+<span class="fc" id="L140">            return transactionTimestamp;</span>
+        }
+
+        public void setTransactionTimestamp(Instant transactionTimestamp) {
+<span class="fc" id="L144">            this.transactionTimestamp = transactionTimestamp;</span>
+<span class="fc" id="L145">        }</span>
+
+        public String getSourceSystem() {
+<span class="fc" id="L148">            return sourceSystem;</span>
+        }
+
+        public void setSourceSystem(String sourceSystem) {
+<span class="fc" id="L152">            this.sourceSystem = sourceSystem;</span>
+<span class="fc" id="L153">        }</span>
+
+        public String getTopicName() {
+<span class="fc" id="L156">            return topicName;</span>
+        }
+
+        public void setTopicName(String topicName) {
+<span class="fc" id="L160">            this.topicName = topicName;</span>
+<span class="fc" id="L161">        }</span>
+
+        @Override
+        public String toString() {
+<span class="fc" id="L165">            return new ToStringBuilder(this).append(&quot;eventId&quot;, eventId).append(&quot;transactionId&quot;, transactionId)</span>
+<span class="fc" id="L166">                    .append(&quot;accountNumber&quot;, accountNumber).append(&quot;transactionType&quot;, transactionType)</span>
+<span class="fc" id="L167">                    .append(&quot;amount&quot;, amount).append(&quot;currency&quot;, currency).append(&quot;merchantName&quot;, merchantName)</span>
+<span class="fc" id="L168">                    .append(&quot;channel&quot;, channel).append(&quot;transactionTimestamp&quot;, transactionTimestamp)</span>
+<span class="fc" id="L169">                    .append(&quot;sourceSystem&quot;, sourceSystem).append(&quot;topicName&quot;, topicName).toString();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
