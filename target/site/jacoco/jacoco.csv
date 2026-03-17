@@ -1,5 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-transaction-api-client,com.harpreetsaund.transactionapiclient.dto,TransactionRequest,3,0,0,0,2,0,1,0,1,0
-transaction-api-client,com.harpreetsaund.transactionapiclient.dto,TransactionResponse.Version1,0,152,0,0,0,46,0,28,0,28
-transaction-api-client,com.harpreetsaund.transactionapiclient.dto,TransactionResponse,3,0,0,0,2,0,1,0,1,0
-transaction-api-client,com.harpreetsaund.transactionapiclient.dto,TransactionRequest.Version1,0,130,0,0,0,39,0,24,0,24
