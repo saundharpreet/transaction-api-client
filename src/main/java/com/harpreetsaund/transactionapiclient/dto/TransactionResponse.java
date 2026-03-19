@@ -187,12 +187,20 @@ public class TransactionResponse {
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this).append("id", id).append("eventId", eventId)
-                    .append("transactionId", transactionId).append("accountNumber", accountNumber)
-                    .append("transactionType", transactionType).append("amount", amount).append("currency", currency)
-                    .append("merchantName", merchantName).append("channel", channel)
-                    .append("transactionTimestamp", transactionTimestamp).append("sourceSystem", sourceSystem)
-                    .append("topicName", topicName).append("createdAt", createdAt).toString();
+            return new ToStringBuilder(this).append("id", id)
+                    .append("eventId", eventId)
+                    .append("transactionId", transactionId)
+                    .append("accountNumber", accountNumber)
+                    .append("transactionType", transactionType)
+                    .append("amount", amount)
+                    .append("currency", currency)
+                    .append("merchantName", merchantName)
+                    .append("channel", channel)
+                    .append("transactionTimestamp", transactionTimestamp)
+                    .append("sourceSystem", sourceSystem)
+                    .append("topicName", topicName)
+                    .append("createdAt", createdAt)
+                    .toString();
         }
     }
 }
