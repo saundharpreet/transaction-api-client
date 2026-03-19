@@ -15,8 +15,8 @@ jobs:
     - name: Checkout parent POM
       uses: actions/checkout@v4
       with:
-        repository: saundharpreet/tom-cat-pom
-        path: tom-cat-pom
+        repository: saundharpreet/top-cat-pom
+        path: top-cat-pom
 
     # 2. Checkout current project
     - name: Checkout current project
@@ -44,7 +44,7 @@ jobs:
     # 5. Install parent POM
     - name: Install parent POM
       run: |
-        cd tom-cat-pom
+        cd top-cat-pom
         mvn -B clean install -DskipTests
 
     # 6. Build project
