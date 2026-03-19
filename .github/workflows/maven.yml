@@ -25,10 +25,10 @@ jobs:
         path: app
 
     # 3. Setup Java + Maven cache
-    - name: Set up JDK 17 with Maven cache
+    - name: Set up JDK 21 with Maven cache
       uses: actions/setup-java@v4
       with:
-        java-version: '17'
+        java-version: '21'
         distribution: 'temurin'
         cache: maven
 
